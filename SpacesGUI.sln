@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddPhysicalDisk", "ConsoleApplication1\AddPhysicalDisk.csproj", "{EA806864-C6E2-491A-B0C0-67720E93434D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddPhysicalDisk", "AddPhysicalDisk\AddPhysicalDisk.csproj", "{EA806864-C6E2-491A-B0C0-67720E93434D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateStoragePool", "ConsoleApplication2\CreateStoragePool.csproj", "{FD9DF8D9-A71F-4E39-9055-0C5E7C17538F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateStoragePool", "CreateStoragePool\CreateStoragePool.csproj", "{FD9DF8D9-A71F-4E39-9055-0C5E7C17538F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

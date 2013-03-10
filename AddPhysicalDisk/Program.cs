@@ -7,11 +7,11 @@ using System.Management;
 
 //AddPhysicalDisk
 
-namespace test1
+namespace Spaces
 {
-    class Program
+    class PhysicalDisk
     {
-        static void Main(string[] args)
+        static void AddDisk(string[] args)
         {
             ManagementClass subSystem = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_StorageSubSystem", null);
 

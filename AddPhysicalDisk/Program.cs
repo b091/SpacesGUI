@@ -19,6 +19,7 @@ namespace test1
 
             ManagementClass disk = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_PhysicalDisk", null);
 
+            //test vs git
 
             ManagementBaseObject inParams2 = null;
             ManagementObject StoragePool = null;

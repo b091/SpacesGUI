@@ -68,6 +68,14 @@ namespace Spaces
             
             inParams2.SetPropertyValue("Usage", 1);
 
+            //UInt32 AddPhysicalDisk(
+            //[in]   String PhysicalDisks[],
+            //[in]   UInt16 Usage,
+            //[in]   Boolean RunAsJob,
+            //[out]  MSFT_StorageJob REF CreatedStorageJob,
+            //[out]  String ExtendedStatus
+            //);
+
             try
             {
                 ManagementBaseObject outParams = StoragePool.InvokeMethod("AddPhysicalDisk", inParams2, null);

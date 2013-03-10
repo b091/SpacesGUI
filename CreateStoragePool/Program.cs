@@ -11,6 +11,9 @@ namespace Spaces
 {
     class StoragePool
     {
+
+
+
         static void Create(string[] args)
         {
             ManagementClass subSystem = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_StorageSubSystem", null);
@@ -60,7 +63,21 @@ namespace Spaces
 
             inParams.SetPropertyValue("FriendlyName", "my_storage");
 
-            
+            //UInt32 CreateStoragePool(
+            //  [in]   String FriendlyName,
+            //  [in]   UInt16 Usage,
+            //  [in]   String OtherUsageDescription,
+            //  [in]   String PhysicalDisks[],
+            //  [in]   String ResiliencySettingNameDefault,
+            //  [in]   UInt16 ProvisioningTypeDefault,
+            //  [in]   UInt64 LogicalSectorSizeDefault,
+            //  [in]   Boolean EnclosureAwareDefault,
+            //  [in]   Boolean RunAsJob,
+            //  [out]  String CreatedStoragePool,
+            //  [out]  MSFT_StorageJob REF CreatedStorageJob,
+            //  [out]  String ExtendedStatus
+            //);
+
 
             try
             {

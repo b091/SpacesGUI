@@ -7,11 +7,11 @@ using System.Management;
 
 //CreateStoragePool
 
-namespace test1
+namespace Spaces
 {
-    class Program
+    class StoragePool
     {
-        static void Main(string[] args)
+        static void Create(string[] args)
         {
             ManagementClass subSystem = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_StorageSubSystem", null);
 

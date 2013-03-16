@@ -9,7 +9,7 @@ using System.Management;
 
 namespace Spaces
 {
-    class StoragePool
+    public class StoragePool
     {
 
 

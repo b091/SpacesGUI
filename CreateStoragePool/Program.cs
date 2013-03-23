@@ -12,9 +12,10 @@ namespace Spaces
     public class StoragePool
     {
 
+        public StoragePool()
+        { }
 
-
-        static void Create(string[] args)
+        public void Create()
         {
             ManagementClass subSystem = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_StorageSubSystem", null);
 

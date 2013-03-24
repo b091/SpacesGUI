@@ -38,5 +38,19 @@ namespace MainApp
                 MessageBoxResult message = MessageBox.Show("Something went wrong!!!");
             }
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Spaces pool = new Spaces();
+            bool result = pool.DeleteStoragePool("my_storage");
+            if (result)
+            {
+                MessageBoxResult message = MessageBox.Show("Pool Successfully deleted");
+            }
+            else
+            {
+                MessageBoxResult message = MessageBox.Show("Something went wrong!!!");
+            }
+        }
     }
 }

@@ -243,5 +243,37 @@ namespace MainApp
 
             return true;
         }
+
+        public bool DeleteStoragePool(string poolName)
+        {
+            ManagementClass storagePool = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_StoragePool", null);
+
+            ManagementObject StoragePool = null;
+
+            foreach (ManagementObject pool in storagePool.GetInstances())
+            {
+                if ((String)pool.GetPropertyValue("FriendlyName") == poolName)
+                {
+                    StoragePool = pool;
+                }
+            }
+
+            //UInt32 DeleteObject(
+            //  [in]   Boolean RunAsJob,
+            //  [out]  MSFT_StorageJob REF CreatedStorageJob,
+            //  [out]  String ExtendedStatus
+            //);
+
+            try
+            {
+                StoragePool.Delete();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

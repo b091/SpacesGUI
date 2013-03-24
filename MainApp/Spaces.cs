@@ -13,6 +13,8 @@ namespace MainApp
         {
         }
 
+        //default create pool uses all available disks for pool creation
+
         public bool DefaultCreatePool()
         {
             ManagementClass subSystem = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_StorageSubSystem", null);
@@ -43,6 +45,7 @@ namespace MainApp
             return true;
         }
 
+        //creates storage pool 
         public bool CreatePool(ArrayList disks, string poolName)
         {
             ManagementClass subSystem = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_StorageSubSystem", null);
@@ -89,7 +92,7 @@ namespace MainApp
             return true;
         }
 
-        
+
 
         public ArrayList GetDisks()
         {
@@ -108,7 +111,8 @@ namespace MainApp
             return diskList;
         }
 
-        public bool AddDisk(ArrayList disks, string poolName)
+
+        public bool AddPhysicalDisk(ArrayList disks, string poolName)
         {
             ManagementClass storagePool = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_StoragePool", null);
 
@@ -149,5 +153,95 @@ namespace MainApp
             return true;
         }
 
+
+        public bool CreateVirtualDisk(string poolName, string diskName, ArrayList selectedDisks)
+        {
+            ManagementClass storagePool = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_StoragePool", null);
+
+            ManagementBaseObject inParams = null;
+            ManagementObject StoragePool = null;
+
+            foreach (ManagementObject pool in storagePool.GetInstances())
+            {
+                if ((String)pool.GetPropertyValue("FriendlyName") == poolName)
+                {
+                    inParams = pool.GetMethodParameters("CreateVirualDisk");
+                    StoragePool = pool;
+                }
+            }
+
+            //UInt32 CreateVirtualDisk(
+            //  [in]   String FriendlyName,
+            //  [in]   UInt64 Size,
+            //  [in]   Boolean UseMaximumSize,
+            //  [in]   UInt16 ProvisioningType,
+            //  [in]   String ResiliencySettingName,
+            //  [in]   UInt16 Usage,
+            //  [in]   String OtherUsageDescription,
+            //  [in]   UInt16 NumberOfDataCopies,
+            //  [in]   UInt16 PhysicalDiskRedundancy,
+            //  [in]   UInt16 NumberOfColumns,
+            //  [in]   Boolean AutoNumberOfColumns,
+            //  [in]   UInt64 Interleave,
+            //  [in]   Boolean IsEnclosureAware,
+            //  [in]   String PhysicalDisksToUse[],
+            //  [in]   Boolean RunAsJob,
+            //  [out]  String CreatedVirtualDisk,
+            //  [out]  MSFT_StorageJob REF CreatedStorageJob,
+            //  [out]  String ExtendedStatus
+            //);
+
+            inParams.SetPropertyValue("FriendlyName", diskName);
+            inParams.SetPropertyValue("PhysicalDisksToUse", selectedDisks);
+
+            try
+            {
+                ManagementBaseObject outParams = StoragePool.InvokeMethod("CreateVirtualDisk", inParams, null);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
+        public bool RemovePhysicalDisk(string poolName, ArrayList disksToRemove)
+        {
+            ManagementClass storagePool = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_StoragePool", null);
+
+            ManagementBaseObject inParams = null;
+            ManagementObject StoragePool = null;
+
+            foreach (ManagementObject pool in storagePool.GetInstances())
+            {
+                if ((String)pool.GetPropertyValue("FriendlyName") == poolName)
+                {
+                    inParams = pool.GetMethodParameters("CreateVirualDisk");
+                    StoragePool = pool;
+                }
+            }
+
+            //UInt32 RemovePhysicalDisk(
+            //  [in]   String PhysicalDisks[],
+            //  [in]   Boolean RunAsJob,
+            //  [out]  MSFT_StorageJob REF CreatedStorageJob,
+            //  [out]  String ExtendedStatus
+            //);
+
+            inParams.SetPropertyValue("PhysicalDisks", disksToRemove);
+
+            try
+            {
+                ManagementBaseObject outParams = StoragePool.InvokeMethod("RemovePhysicalDisk", inParams, null);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

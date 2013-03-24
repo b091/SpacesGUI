@@ -28,7 +28,7 @@ namespace MainApp
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Spaces pool = new Spaces();
-            bool result = pool.Create();
+            bool result = pool.CreatePool(pool.GetDisks(),"my_storage");
 
         }
     }

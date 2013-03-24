@@ -28,8 +28,15 @@ namespace MainApp
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Spaces pool = new Spaces();
-            bool result = pool.CreatePool(pool.GetDisks(),"my_storage");
-
+            bool result = pool.CreatePool(pool.GetDisks(), "my_storage");
+            if (result)
+            {
+                MessageBoxResult message = MessageBox.Show("Pool Successfully created");
+            }
+            else
+            {
+                MessageBoxResult message = MessageBox.Show("Something went wrong!!!");
+            }
         }
     }
 }

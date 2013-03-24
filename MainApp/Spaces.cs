@@ -263,17 +263,22 @@ namespace MainApp
             //  [out]  MSFT_StorageJob REF CreatedStorageJob,
             //  [out]  String ExtendedStatus
             //);
-
-            try
-            {
-                StoragePool.Delete();
-            }
-            catch (Exception)
+            if (StoragePool == null)
             {
                 return false;
             }
-
+            try
+            {
+                ManagementBaseObject outParams = StoragePool.InvokeMethod("DeleteObject", null, null);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
             return true;
+            
+            
         }
     }
 }

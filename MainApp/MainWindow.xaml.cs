@@ -49,7 +49,7 @@ namespace MainApp
             }
             else
             {
-                MessageBoxResult message = MessageBox.Show("Something went wrong!!!");
+                MessageBoxResult message = MessageBox.Show("There is no pool to delete");
             }
         }
     }

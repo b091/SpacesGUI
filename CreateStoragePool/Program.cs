@@ -54,31 +54,14 @@ namespace Spaces
                     //Console.WriteLine("*******************");
                 }
 
-
-
-
             }
-            //inParams2["PhysicalDisks"] = names[0];
+                //inParams2["PhysicalDisks"] = names[0];
             Array a = list.ToArray();
             inParams.SetPropertyValue("PhysicalDisks", a);
 
             inParams.SetPropertyValue("FriendlyName", "my_storage");
 
-            //UInt32 CreateStoragePool(
-            //  [in]   String FriendlyName,
-            //  [in]   UInt16 Usage,
-            //  [in]   String OtherUsageDescription,
-            //  [in]   String PhysicalDisks[],
-            //  [in]   String ResiliencySettingNameDefault,
-            //  [in]   UInt16 ProvisioningTypeDefault,
-            //  [in]   UInt64 LogicalSectorSizeDefault,
-            //  [in]   Boolean EnclosureAwareDefault,
-            //  [in]   Boolean RunAsJob,
-            //  [out]  String CreatedStoragePool,
-            //  [out]  MSFT_StorageJob REF CreatedStorageJob,
-            //  [out]  String ExtendedStatus
-            //);
-
+            
 
             try
             {

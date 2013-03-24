@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Spaces;
+
 
 namespace MainApp
 {
@@ -27,8 +27,9 @@ namespace MainApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            StoragePool pool = new StoragePool();
-            pool.Create();
+            Spaces pool = new Spaces();
+            bool result = pool.Create();
+
         }
     }
 }

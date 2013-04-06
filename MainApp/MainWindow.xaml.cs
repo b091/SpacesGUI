@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,11 +25,13 @@ namespace MainApp
         {
             InitializeComponent();
         }
+        ArrayList disks = new ArrayList();
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Spaces pool = new Spaces();
-            bool result = pool.CreatePool(pool.GetDisks(), "my_storage");
+            disks = pool.GetDisks();
+            bool result = pool.CreatePool(disks, "my_storage");
             if (result)
             {
                 MessageBoxResult message = MessageBox.Show("Pool Successfully created");
@@ -57,7 +60,7 @@ namespace MainApp
         {
             Spaces pool = new Spaces();
 
-            bool result = pool.CreateVirtualDisk("my_storage", "Test Disk", pool.GetDisksFromPool());
+            bool result = pool.CreateVirtualDisk("my_storage", "Test Disk", disks);
              
             if (result)
             {

@@ -119,7 +119,8 @@ namespace MainApp
             
             foreach (ManagementObject objectId in disk.GetInstances())
             {
-                if ((int)objectId.GetPropertyValue("CannotPullReason") == 2)
+                
+                if ((bool)objectId.GetPropertyValue("CanPool") == false)
                 {
                     diskList.Add(objectId);
                 }
@@ -182,7 +183,7 @@ namespace MainApp
             {
                 if ((String)pool.GetPropertyValue("FriendlyName") == poolName)
                 {
-                    inParams = pool.GetMethodParameters("CreateVirualDisk");
+                    inParams = pool.GetMethodParameters("CreateVirtualDisk");
                     StoragePool = pool;
                 }
             }
@@ -208,8 +209,9 @@ namespace MainApp
             //  [out]  String ExtendedStatus
             //);
 
+            inParams.SetPropertyValue("UseMaximumSize", true);
             inParams.SetPropertyValue("FriendlyName", diskName);
-            inParams.SetPropertyValue("PhysicalDisksToUse", selectedDisks);
+            inParams.SetPropertyValue("PhysicalDisksToUse", selectedDisks.ToArray());
 
             try
             {

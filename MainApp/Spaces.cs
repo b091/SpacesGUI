@@ -111,6 +111,23 @@ namespace MainApp
             return diskList;
         }
 
+        public ArrayList GetDisksFromPool()
+        {
+            ManagementClass disk = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_PhysicalDisk", null);
+
+            ArrayList diskList = new ArrayList();
+            
+            foreach (ManagementObject objectId in disk.GetInstances())
+            {
+                if ((int)objectId.GetPropertyValue("CannotPullReason") == 2)
+                {
+                    diskList.Add(objectId);
+                }
+            }
+
+            return diskList;
+        }
+
 
         public bool AddPhysicalDisk(ArrayList disks, string poolName)
         {
@@ -218,7 +235,7 @@ namespace MainApp
             {
                 if ((String)pool.GetPropertyValue("FriendlyName") == poolName)
                 {
-                    inParams = pool.GetMethodParameters("CreateVirualDisk");
+                    inParams = pool.GetMethodParameters("CreateVirtualDisk");
                     StoragePool = pool;
                 }
             }

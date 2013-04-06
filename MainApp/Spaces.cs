@@ -277,8 +277,6 @@ namespace MainApp
             }
             
             return true;
-            
-            
         }
     }
 }

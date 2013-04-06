@@ -52,5 +52,21 @@ namespace MainApp
                 MessageBoxResult message = MessageBox.Show("There is no pool to delete");
             }
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Spaces pool = new Spaces();
+
+            bool result = pool.CreateVirtualDisk("my_storage", "Test Disk", pool.GetDisks());
+             
+            if (result)
+            {
+                MessageBoxResult message = MessageBox.Show("Disk successfully added");
+            }
+            else
+            {
+                MessageBoxResult message = MessageBox.Show("Something went wrong!!!");
+            }
+        }
     }
 }

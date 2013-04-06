@@ -57,7 +57,7 @@ namespace MainApp
         {
             Spaces pool = new Spaces();
 
-            bool result = pool.CreateVirtualDisk("my_storage", "Test Disk", pool.GetDisks());
+            bool result = pool.CreateVirtualDisk("my_storage", "Test Disk", pool.GetDisksFromPool());
              
             if (result)
             {

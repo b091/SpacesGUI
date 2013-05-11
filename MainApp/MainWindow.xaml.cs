@@ -60,6 +60,7 @@ namespace MainApp
         {
             Spaces pool = new Spaces();
 
+
             bool result = pool.CreateVirtualDisk("my_storage", "Test Disk", disks);
              
             if (result)

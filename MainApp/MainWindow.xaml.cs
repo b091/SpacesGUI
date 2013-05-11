@@ -72,5 +72,10 @@ namespace MainApp
                 MessageBoxResult message = MessageBox.Show("Something went wrong!!!");
             }
         }
+
+        private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove(); 
+        }
     }
 }

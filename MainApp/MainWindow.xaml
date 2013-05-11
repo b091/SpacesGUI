@@ -23,25 +23,28 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Button Content="Create StoragePool" HorizontalAlignment="Left" Margin="55,188,0,0" VerticalAlignment="Top" Width="126" Click="Button_Click" Grid.Column="1" Grid.Row="1" BorderBrush="White">
+        <Button Content="Create StoragePool" HorizontalAlignment="Left" Margin="57,188,0,0" VerticalAlignment="Top" Width="126" Click="Button_CreateStoragePool" Grid.Column="1" Grid.Row="1" BorderBrush="White">
             <Button.Background>
                 <SolidColorBrush Color="White" Opacity="0.7"/>
             </Button.Background>
         </Button>
-        <Button Content="Delete StoragePool" HorizontalAlignment="Left" Margin="30,187.789,0,0" VerticalAlignment="Top" Width="125" Click="Button_Click_1" Grid.ColumnSpan="2" Grid.Row="1" RenderTransformOrigin="0,0" Foreground="Black" BorderBrush="White">
+        <Button Content="Delete StoragePool" HorizontalAlignment="Left" Margin="31,188,0,0" VerticalAlignment="Top" Width="125" Click="Button_DeleteStoragePool" Grid.ColumnSpan="2" Grid.Row="1" RenderTransformOrigin="0,0" Foreground="Black" BorderBrush="White">
             <Button.Background>
                 <SolidColorBrush Color="White" Opacity="0.7"/>
             </Button.Background>
         </Button>
-        <Button Content="Add Logical Disk" HorizontalAlignment="Left" Margin="206,188,0,0" VerticalAlignment="Top" Width="125" Click="Button_Click_2" Grid.Column="1" Grid.Row="1">
+        <Button Content="Add Logical Disk" HorizontalAlignment="Left" Margin="220,188,0,0" VerticalAlignment="Top" Width="125" Click="Button_AddLogicalDisc" Grid.Column="1" Grid.Row="1" BorderBrush="White">
             <Button.Background>
                 <SolidColorBrush Color="White" Opacity="0.7"/>
             </Button.Background>
         </Button>
         <Rectangle x:Name="TitleBar" HorizontalAlignment="Left" Height="23" Margin="10,4.789,0,0" Stroke="#FF832929" VerticalAlignment="Top" Width="497" Fill="#FF404F4F" MouseDown="TitleBar_MouseDown" Grid.ColumnSpan="2" Grid.Row="1" RadiusY="9" RadiusX="9"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="14,283,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Copyright UG Team, Gdańsk Poland " VerticalAlignment="Top" Foreground="White"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="38,299,0,0" Grid.Row="1" TextWrapping="Wrap" Text="2013 - All Rights Reserved." VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="-0.434,2.161"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="88,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="PAN|DA - 5.0x4" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="27,283,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Copyright UG Team, Gdańsk Poland " VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="54,299,0,0" Grid.Row="1" TextWrapping="Wrap" Text="2013 - All Rights Reserved." VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="-0.434,2.161"/>
+        <TextBlock HorizontalAlignment="Left" Margin="18,8,0,0" Grid.Row="1" TextWrapping="Wrap" Text="PANda - 5.0*4" VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="-1.206,0.275"/>
+        <Button Content="X" Grid.Column="1" HorizontalAlignment="Left" Margin="342,6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="15" Click="Button_Close"/>
+        <Button Content="_" Grid.Column="1" HorizontalAlignment="Left" Margin="324,6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="15" Click="Button_Minimalize"/>
+        <Image Margin="132,62,138,201" Grid.Row="1" Source="usb-icon-512.png" Stretch="Fill" Grid.ColumnSpan="2"/>
 
 
     </Grid>

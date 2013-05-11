@@ -27,7 +27,7 @@ namespace MainApp
         }
         ArrayList disks = new ArrayList();
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_CreateStoragePool(object sender, RoutedEventArgs e)
         {
             Spaces pool = new Spaces();
             disks = pool.GetDisks();
@@ -42,7 +42,7 @@ namespace MainApp
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_DeleteStoragePool(object sender, RoutedEventArgs e)
         {
             Spaces pool = new Spaces();
             bool result = pool.DeleteStoragePool("my_storage");
@@ -56,7 +56,7 @@ namespace MainApp
             }
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Button_AddLogicalDisc(object sender, RoutedEventArgs e)
         {
             Spaces pool = new Spaces();
 
@@ -76,6 +76,16 @@ namespace MainApp
         private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove(); 
+        }
+
+        private void Button_Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Button_Minimalize(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = System.Windows.WindowState.Minimized;
         }
     }
 }

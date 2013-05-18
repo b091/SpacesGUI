@@ -263,9 +263,11 @@ namespace MainApp
             return true;
         }
 
-        public bool DeleteStoragePool(string poolName)
+        public bool DeleteStoragePool(string poolName, string diskName)
         {
             ManagementClass storagePool = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_StoragePool", null);
+
+            ManagementClass VirtualDisk = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_VirtualDisk", null);
 
             ManagementObject StoragePool = null;
 
@@ -277,11 +279,29 @@ namespace MainApp
                 }
             }
 
+            ManagementObject Disk = null;
+
+            foreach (ManagementObject disk in VirtualDisk.GetInstances())
+            {
+                if ((String)disk.GetPropertyValue("FriendlyName") == diskName)
+                {
+                    Disk = disk;
+                }
+            }
             //UInt32 DeleteObject(
             //  [in]   Boolean RunAsJob,
             //  [out]  MSFT_StorageJob REF CreatedStorageJob,
             //  [out]  String ExtendedStatus
             //);
+            if (Disk != null)
+            {
+                try
+                {
+                    ManagementBaseObject outParam = Disk.InvokeMethod("DeleteObject", null, null);
+                }
+                catch { }
+            }
+
             if (StoragePool == null)
             {
                 return false;
@@ -290,10 +310,8 @@ namespace MainApp
             {
                 ManagementBaseObject outParams = StoragePool.InvokeMethod("DeleteObject", null, null);
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            catch 
+            {}
             
             return true;
         }

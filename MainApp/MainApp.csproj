@@ -100,10 +100,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="usb-icon-512.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="1368330481_storage_4.png" />
+    <Resource Include="images\close.png" />
+    <Resource Include="images\minimize.png" />
+    <Resource Include="images\usb.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

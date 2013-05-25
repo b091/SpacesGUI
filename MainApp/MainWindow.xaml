@@ -43,7 +43,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="18,8,0,0" Grid.Row="1" TextWrapping="Wrap" Text="PANda - 5.0*4" VerticalAlignment="Top" RenderTransformOrigin="-1.206,0.275" FontFamily="Global Monospace" FontWeight="Bold" FontSize="14" Width="138" Grid.ColumnSpan="2" MouseDown="TitleBar_MouseDown"/>
         <Button Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="342,6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="15" Click="Button_Close" BorderThickness="0">
             <Button.Background>
-                <ImageBrush ImageSource="images/close.png"/>
+                <ImageBrush ImageSource="images\close.png"/>
             </Button.Background>
         </Button>
         <Button Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="324,6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="15" Click="Button_Minimalize" BorderThickness="0">

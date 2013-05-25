@@ -11,7 +11,7 @@
             <ColumnDefinition Width="139*"/>
             <ColumnDefinition Width="378*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle HorizontalAlignment="Left" Height="322" Margin="10,0,0,0" Stroke="#FF832929" VerticalAlignment="Top" Width="497" RadiusY="9" Grid.ColumnSpan="2" Grid.Row="1" RadiusX="9">
+        <Rectangle HorizontalAlignment="Left" Height="322" Margin="10,0,0,0" Stroke="#FF832929" VerticalAlignment="Top" Width="497" RadiusY="9" Grid.ColumnSpan="2" Grid.Row="1" RadiusX="9" MouseDown="TitleBar_MouseDown">
             <Rectangle.Effect>
                 <DropShadowEffect x:Name="DS" BlurRadius="15" ShadowDepth="0" Color="Black"/>
             </Rectangle.Effect>
@@ -38,13 +38,20 @@
                 <SolidColorBrush Color="White" Opacity="0.7"/>
             </Button.Background>
         </Button>
-        <Rectangle x:Name="TitleBar" HorizontalAlignment="Left" Height="23" Margin="10,4.789,0,0" Stroke="#FF832929" VerticalAlignment="Top" Width="497" Fill="#FF404F4F" MouseDown="TitleBar_MouseDown" Grid.ColumnSpan="2" Grid.Row="1" RadiusY="9" RadiusX="9"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="27,283,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Copyright UG Team, Gdańsk Poland " VerticalAlignment="Top" Foreground="White"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="54,299,0,0" Grid.Row="1" TextWrapping="Wrap" Text="2013 - All Rights Reserved." VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="-0.434,2.161"/>
-        <TextBlock HorizontalAlignment="Left" Margin="18,8,0,0" Grid.Row="1" TextWrapping="Wrap" Text="PANda - 5.0*4" VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="-1.206,0.275"/>
-        <Button Content="X" Grid.Column="1" HorizontalAlignment="Left" Margin="342,6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="15" Click="Button_Close"/>
-        <Button Content="_" Grid.Column="1" HorizontalAlignment="Left" Margin="324,6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="15" Click="Button_Minimalize"/>
-        <Image Margin="132,62,138,201" Grid.Row="1" Source="usb-icon-512.png" Stretch="Fill" Grid.ColumnSpan="2"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="27,283,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Copyright UG Team, Gdańsk Poland " VerticalAlignment="Top" Foreground="White" MouseDown="TitleBar_MouseDown"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="54,299,0,0" Grid.Row="1" TextWrapping="Wrap" Text="2013 - All Rights Reserved." VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="-0.434,2.161" MouseDown="TitleBar_MouseDown"/>
+        <TextBlock HorizontalAlignment="Left" Margin="18,8,0,0" Grid.Row="1" TextWrapping="Wrap" Text="PANda - 5.0*4" VerticalAlignment="Top" RenderTransformOrigin="-1.206,0.275" FontFamily="Global Monospace" FontWeight="Bold" FontSize="14" Width="138" Grid.ColumnSpan="2" MouseDown="TitleBar_MouseDown"/>
+        <Button Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="342,6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="15" Click="Button_Close" BorderThickness="0">
+            <Button.Background>
+                <ImageBrush ImageSource="images/close.png"/>
+            </Button.Background>
+        </Button>
+        <Button Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="324,6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="15" Click="Button_Minimalize" BorderThickness="0">
+            <Button.Background>
+                <ImageBrush ImageSource="images/minimize.png"/>
+            </Button.Background>
+        </Button>
+        <Image Margin="132,62,138,201" Grid.Row="1" Source="images/usb.png" Stretch="Fill" Grid.ColumnSpan="2" MouseDown="TitleBar_MouseDown"/>
 
 
     </Grid>

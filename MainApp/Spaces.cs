@@ -186,6 +186,10 @@ namespace MainApp
                     inParams = pool.GetMethodParameters("CreateVirtualDisk");
                     StoragePool = pool;
                 }
+                else
+                {
+                    return false;
+                }
             }
 
             //UInt32 CreateVirtualDisk(

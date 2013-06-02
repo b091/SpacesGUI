@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,33 +19,15 @@ namespace MainApp
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ConfigureStoragePool : Window
     {
-        public MainWindow()
+        public ConfigureStoragePool()
         {
             InitializeComponent();
         }
         ArrayList disks = new ArrayList();
 
-        private void Button_CreateStoragePool(object sender, RoutedEventArgs e)
-        {
-            var newWindow = new ConfigureStoragePool();
-            newWindow.Show();
-        }
-
-        private void Button_DeleteStoragePool(object sender, RoutedEventArgs e)
-        {
-            Spaces pool = new Spaces();
-            bool result = pool.DeleteStoragePool("my_storage", "Test Disk");
-            if (result)
-            {
-                MessageBoxResult message = MessageBox.Show("Pool Successfully deleted");
-            }
-            else
-            {
-                MessageBoxResult message = MessageBox.Show("There is no pool to delete");
-            }
-        }
+        string poolName = "";
 
         private void Button_AddLogicalDisc(object sender, RoutedEventArgs e)
         {
@@ -53,7 +35,7 @@ namespace MainApp
 
 
             bool result = pool.CreateVirtualDisk("my_storage", "Test Disk", disks);
-             
+
             if (result)
             {
                 MessageBoxResult message = MessageBox.Show("Disk successfully added");
@@ -66,7 +48,7 @@ namespace MainApp
 
         private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove(); 
+            this.DragMove();
         }
 
         private void Button_Close(object sender, RoutedEventArgs e)
@@ -77,6 +59,29 @@ namespace MainApp
         private void Button_Minimalize(object sender, RoutedEventArgs e)
         {
             this.WindowState = System.Windows.WindowState.Minimized;
+        }
+
+        private void Button_Create_Click(object sender, RoutedEventArgs e)
+        {
+        
+            Spaces pool = new Spaces();
+            disks = pool.GetDisks();
+            bool result = pool.CreatePool(disks, poolName);
+            if (result)
+            {
+                MessageBoxResult message = MessageBox.Show("Pool Successfully created");
+            }
+            else
+            {
+                MessageBoxResult message = MessageBox.Show("Something went wrong!!!");
+            }
+
+            this.Close();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            poolName = TextBox1.Text;
         }
     }
 }

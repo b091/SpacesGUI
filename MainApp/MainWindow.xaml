@@ -52,6 +52,7 @@
             </Button.Background>
         </Button>
         <Image Margin="132,62,138,201" Grid.Row="1" Source="images/usb.png" Stretch="Fill" Grid.ColumnSpan="2" MouseDown="TitleBar_MouseDown"/>
+        <ComboBox x:Name="AvailablePools" Grid.Column="1" HorizontalAlignment="Left" Margin="82,94,0,0" Grid.Row="1" VerticalAlignment="Top" Width="129" SelectedIndex="0"/>
 
 
     </Grid>

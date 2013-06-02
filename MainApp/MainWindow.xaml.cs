@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -24,24 +25,44 @@ namespace MainApp
         public MainWindow()
         {
             InitializeComponent();
+            FillComboBox();
         }
+
         ArrayList disks = new ArrayList();
+
+        //List<string> availablePools = new List<string>();
+
+
+        public void FillComboBox()
+        {
+            Spaces pool = new Spaces();
+            var availablePools = pool.GetListOfAvailablePools();
+
+            if (availablePools.Count > 0)
+            {
+                foreach (string element in availablePools)
+                {
+                    AvailablePools.Items.Add(element);
+                }
+            }
+            
+        }
 
         private void Button_CreateStoragePool(object sender, RoutedEventArgs e)
         {
-            var newWindow = new ConfigureStoragePool();
+            ConfigureStoragePool newWindow = new ConfigureStoragePool();
             newWindow.Show();
         }
 
         private void Button_DeleteStoragePool(object sender, RoutedEventArgs e)
         {
-            var deleteWindow = new DeletePool();
+            DeletePool deleteWindow = new DeletePool();
             deleteWindow.Show();
         }
 
         private void Button_AddLogicalDisc(object sender, RoutedEventArgs e)
         {
-            var addDiskWindow = new AddLogicalDisk();
+            AddLogicalDisk addDiskWindow = new AddLogicalDisk();
             addDiskWindow.Show();
         }
 

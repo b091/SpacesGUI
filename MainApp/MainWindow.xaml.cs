@@ -42,10 +42,16 @@ namespace MainApp
             {
                 foreach (string element in availablePools)
                 {
-                    AvailablePools.Items.Add(element);
+                    if (!AvailablePools.Items.Contains(element))
+                    {
+                        AvailablePools.Items.Add(element);
+                    }
                 }
             }
-            
+            else
+            {
+                AvailablePools.Items.Clear();
+            }
         }
 
         private void Button_CreateStoragePool(object sender, RoutedEventArgs e)
@@ -79,6 +85,11 @@ namespace MainApp
         private void Button_Minimalize(object sender, RoutedEventArgs e)
         {
             this.WindowState = System.Windows.WindowState.Minimized;
+        }
+
+        private void AvailablePools_MouseMove(object sender, MouseEventArgs e)
+        {
+            FillComboBox();
         }
     }
 }

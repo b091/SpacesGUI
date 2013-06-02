@@ -172,13 +172,13 @@ namespace MainApp
         }
 
 
-        public bool CreateVirtualDisk(string poolName, string diskName, ArrayList selectedDisks)
+        public bool CreateVirtualDisk(string poolName, string diskName)
         {
             ManagementClass storagePool = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_StoragePool", null);
-
+            
             ManagementBaseObject inParams = null;
             ManagementObject StoragePool = null;
-
+            
             foreach (ManagementObject pool in storagePool.GetInstances())
             {
                 if ((String)pool.GetPropertyValue("FriendlyName") == poolName)
@@ -186,12 +186,13 @@ namespace MainApp
                     inParams = pool.GetMethodParameters("CreateVirtualDisk");
                     StoragePool = pool;
                 }
-                else
+                else if (StoragePool == null) 
                 {
                     return false;
                 }
             }
 
+            
             //UInt32 CreateVirtualDisk(
             //  [in]   String FriendlyName,
             //  [in]   UInt64 Size,
@@ -215,7 +216,7 @@ namespace MainApp
 
             inParams.SetPropertyValue("UseMaximumSize", true);
             inParams.SetPropertyValue("FriendlyName", diskName);
-            inParams.SetPropertyValue("PhysicalDisksToUse", selectedDisks.ToArray());
+            
 
             try
             {

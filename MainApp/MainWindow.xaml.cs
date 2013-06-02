@@ -41,19 +41,8 @@ namespace MainApp
 
         private void Button_AddLogicalDisc(object sender, RoutedEventArgs e)
         {
-            Spaces pool = new Spaces();
-
-
-            bool result = pool.CreateVirtualDisk("my_storage", "Test Disk", disks);
-             
-            if (result)
-            {
-                MessageBoxResult message = MessageBox.Show("Disk successfully added");
-            }
-            else
-            {
-                MessageBoxResult message = MessageBox.Show("Something went wrong!!!");
-            }
+            var addDiskWindow = new AddLogicalDisk();
+            addDiskWindow.Show();
         }
 
         private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)

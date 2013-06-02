@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddLogicalDisk.xaml.cs">
+      <DependentUpon>AddLogicalDisk.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ConfigureStoragePool.xaml.cs">
       <DependentUpon>ConfigureStoragePool.xaml</DependentUpon>
     </Compile>
@@ -61,6 +64,10 @@
       <DependentUpon>DeletePool.xaml</DependentUpon>
     </Compile>
     <Compile Include="Spaces.cs" />
+    <Page Include="AddLogicalDisk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ConfigureStoragePool.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

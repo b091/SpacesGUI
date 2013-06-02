@@ -1,5 +1,4 @@
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,24 +9,29 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 
 namespace MainApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AddLogicalDisk.xaml
     /// </summary>
-    public partial class ConfigureStoragePool : Window
+    public partial class AddLogicalDisk : Window
     {
-        public ConfigureStoragePool()
+        public AddLogicalDisk()
         {
             InitializeComponent();
-        }
-        ArrayList disks = new ArrayList();
+            Spaces pool = new Spaces();
+            var listOfPools = pool.GetListOfAvailablePools();
 
-        string poolName = "";
+            if (listOfPools.Count > 0)
+            {
+                foreach (string element in listOfPools)
+                {
+                    PoolSelection2.Items.Add(element);
+                }
+            }
+        }
 
         private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -44,27 +48,24 @@ namespace MainApp
             this.WindowState = System.Windows.WindowState.Minimized;
         }
 
-        private void Button_Create_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-        
+
             Spaces pool = new Spaces();
-            disks = pool.GetDisks();
-            bool result = pool.CreatePool(disks, poolName);
+
+
+            bool result = pool.CreateVirtualDisk(PoolSelection2.SelectedItem.ToString(), DiskName.Text);
+
             if (result)
             {
-                MessageBoxResult message = MessageBox.Show("Pool Successfully created");
+                MessageBoxResult message = MessageBox.Show("Disk successfully added");
             }
             else
             {
                 MessageBoxResult message = MessageBox.Show("Something went wrong!!!");
             }
-
             this.Close();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            poolName = TextBox1.Text;
-        }
     }
 }

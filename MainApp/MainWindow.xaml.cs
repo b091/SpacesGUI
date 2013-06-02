@@ -35,16 +35,8 @@ namespace MainApp
 
         private void Button_DeleteStoragePool(object sender, RoutedEventArgs e)
         {
-            Spaces pool = new Spaces();
-            bool result = pool.DeleteStoragePool("my_storage", "Test Disk");
-            if (result)
-            {
-                MessageBoxResult message = MessageBox.Show("Pool Successfully deleted");
-            }
-            else
-            {
-                MessageBoxResult message = MessageBox.Show("There is no pool to delete");
-            }
+            var deleteWindow = new DeletePool();
+            deleteWindow.Show();
         }
 
         private void Button_AddLogicalDisc(object sender, RoutedEventArgs e)

@@ -267,7 +267,7 @@ namespace MainApp
             return true;
         }
 
-        public bool DeleteStoragePool(string poolName, string diskName)
+        public bool DeleteStoragePool(string poolName)
         {
             ManagementClass storagePool = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_StoragePool", null);
 
@@ -287,7 +287,7 @@ namespace MainApp
 
             foreach (ManagementObject disk in VirtualDisk.GetInstances())
             {
-                if ((String)disk.GetPropertyValue("FriendlyName") == diskName)
+                if ((String)disk.GetPropertyValue("FriendlyName") != "")
                 {
                     Disk = disk;
                 }
@@ -318,6 +318,24 @@ namespace MainApp
             {}
             
             return true;
+        }
+
+        public List<string> GetListOfAvailablePools()
+        {
+            
+            ManagementClass storagePool = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_StoragePool", null);
+
+            List<string> PoolsList = new List<string>();
+
+            foreach (ManagementObject pool in storagePool.GetInstances())
+            {
+                if ((String)pool.GetPropertyValue("FriendlyName") != "Primordial")
+                {
+                    PoolsList.Add((String)pool.GetPropertyValue("FriendlyName"));
+                }
+            }
+
+            return PoolsList;
         }
     }
 }

@@ -24,6 +24,7 @@ namespace MainApp
         public ConfigureStoragePool()
         {
             InitializeComponent();
+            Spaces obj = new Spaces();
         }
         ArrayList disks = new ArrayList();
 
@@ -66,5 +67,6 @@ namespace MainApp
         {
             poolName = TextBox1.Text;
         }
+
     }
 }

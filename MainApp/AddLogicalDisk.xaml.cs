@@ -21,6 +21,9 @@ namespace MainApp
         public AddLogicalDisk()
         {
             InitializeComponent();
+            ResilienceType.Items.Add("simple");
+            ResilienceType.Items.Add("mirror");
+            ResilienceType.Items.Add("parity");
             Spaces pool = new Spaces();
             var listOfPools = pool.GetListOfAvailablePools();
 
@@ -31,6 +34,16 @@ namespace MainApp
                     PoolSelection2.Items.Add(element);
                 }
             }
+
+            List<char> availableLetters = pool.GetListOfAvailableLetters();
+            if (availableLetters.Count > 0)
+            {
+                foreach (char letter in availableLetters)
+                {
+                    DriveLetter.Items.Add(letter);
+                }
+            }
+
         }
 
         private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
@@ -54,7 +67,7 @@ namespace MainApp
             Spaces pool = new Spaces();
 
 
-            bool result = pool.CreateVirtualDisk(PoolSelection2.SelectedItem.ToString(), DiskName.Text);
+            bool result = pool.CreateVirtualDisk(PoolSelection2.SelectedItem.ToString(), DiskName.Text, ResilienceType.SelectedItem.ToString(), DriveLetter.SelectedItem.ToString());
 
             if (result)
             {

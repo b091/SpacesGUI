@@ -36,8 +36,11 @@
                 <ImageBrush ImageSource="images/minimize.png"/>
             </Button.Background>
         </Button>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="43,42,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Pool to Delete" VerticalAlignment="Top"/>
-        <ComboBox x:Name="PoolSelection" Grid.Column="1" HorizontalAlignment="Left" Margin="43,71,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" ToolTip="Select Pool" SelectedIndex="0"/>
-        <Button Content="Delete Pool" Grid.Column="1" HorizontalAlignment="Left" Margin="43,123,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Click="Delete_Pool"/>
+        <TextBlock HorizontalAlignment="Left" Margin="175,69,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Pool to Delete" VerticalAlignment="Top" Grid.Column="1" Width="91"/>
+        <ComboBox x:Name="PoolSelection" Grid.Column="1" HorizontalAlignment="Left" Margin="175,90,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" ToolTip="Select Pool" SelectedIndex="0"/>
+        <Button Content="Delete Pool" Grid.Column="1" HorizontalAlignment="Left" Margin="175,127,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Click="Delete_Pool"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="0,69,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="91"><Run Language="pl-pl" Text="Disk to Delete"/></TextBlock>
+        <ComboBox x:Name="LogicalDiskSelect" Grid.Column="1" HorizontalAlignment="Left" Margin="0,90,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectedIndex="0"/>
+        <Button Content="Delete Logical Disk" Grid.Column="1" HorizontalAlignment="Left" Margin="0,127,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
     </Grid>
 </Window>

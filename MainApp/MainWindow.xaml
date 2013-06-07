@@ -28,7 +28,7 @@
                 <SolidColorBrush Color="White" Opacity="0.7"/>
             </Button.Background>
         </Button>
-        <Button Content="Delete StoragePool" HorizontalAlignment="Left" Margin="31,188,0,0" VerticalAlignment="Top" Width="125" Click="Button_DeleteStoragePool" Grid.ColumnSpan="2" Grid.Row="1" RenderTransformOrigin="0,0" Foreground="Black" BorderBrush="White">
+        <Button Content="Delete Disk or Pool" HorizontalAlignment="Left" Margin="31,188,0,0" VerticalAlignment="Top" Width="125" Click="Button_DeleteStoragePool" Grid.ColumnSpan="2" Grid.Row="1" RenderTransformOrigin="0,0" Foreground="Black" BorderBrush="White">
             <Button.Background>
                 <SolidColorBrush Color="White" Opacity="0.7"/>
             </Button.Background>

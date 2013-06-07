@@ -41,6 +41,10 @@
         <Button Content="Add Disk" Grid.Column="1" HorizontalAlignment="Left" Margin="257,249,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="43,99,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Disk Name:" VerticalAlignment="Top" RenderTransformOrigin="0.12,0.188"/>
         <TextBox x:Name="DiskName" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="43,115,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Storage Space" VerticalAlignment="Top" Width="120"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="43,153,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"><Run Language="pl-pl" Text="Resilience Type"/><LineBreak/><Run Language="pl-pl"/></TextBlock>
+        <ComboBox x:Name="ResilienceType" Grid.Column="1" HorizontalAlignment="Left" Margin="43,173,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectedIndex="0"/>
+        <ComboBox x:Name="DriveLetter" Grid.Column="1" HorizontalAlignment="Left" Margin="225,63,0,0" Grid.Row="1" VerticalAlignment="Top" Width="61" RenderTransformOrigin="0.417,0.455" SelectedIndex="0"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="225,47,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Drive Letter" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

@@ -33,6 +33,16 @@ namespace MainApp
                     PoolSelection.Items.Add(element);
                 }
             }
+
+            var listOfDisks = pool.GetListOfLogicalDisks();
+
+            if (listOfDisks.Count > 0)
+            {
+                foreach (string element in listOfDisks)
+                {
+                    LogicalDiskSelect.Items.Add(element);
+                }
+            }
             
         }
 
@@ -68,5 +78,24 @@ namespace MainApp
 
             this.Close();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Spaces obj = new Spaces();
+            bool result = obj.DeleteLogicalDisk(LogicalDiskSelect.SelectedItem.ToString());
+            
+            if (result)
+            {
+                MessageBoxResult message = MessageBox.Show("Logical Disk Successfully deleted");
+            }
+            else
+            {
+                MessageBoxResult message = MessageBox.Show("There is no disk to delete");
+            }
+
+            this.Close();
+        }
+
+        
     }
 }

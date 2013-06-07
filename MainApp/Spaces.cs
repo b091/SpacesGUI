@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Management;
+using System.Threading;
 
 namespace MainApp
 {
@@ -172,12 +173,15 @@ namespace MainApp
         }
 
 
-        public bool CreateVirtualDisk(string poolName, string diskName)
+        public bool CreateVirtualDisk(string poolName, string diskName, string resilienceType, string driveLetter)
         {
             ManagementClass storagePool = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_StoragePool", null);
+            ManagementClass disk = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_Disk", null);
             
             ManagementBaseObject inParams = null;
+            ManagementBaseObject inParamsDisk = null;
             ManagementObject StoragePool = null;
+            ManagementObject Disk = null;
             
             foreach (ManagementObject pool in storagePool.GetInstances())
             {
@@ -186,13 +190,13 @@ namespace MainApp
                     inParams = pool.GetMethodParameters("CreateVirtualDisk");
                     StoragePool = pool;
                 }
-                else if (StoragePool == null) 
-                {
-                    return false;
-                }
+                
             }
 
-            
+            if (StoragePool == null) 
+            {
+                    return false;
+            }
             //UInt32 CreateVirtualDisk(
             //  [in]   String FriendlyName,
             //  [in]   UInt64 Size,
@@ -216,6 +220,8 @@ namespace MainApp
 
             inParams.SetPropertyValue("UseMaximumSize", true);
             inParams.SetPropertyValue("FriendlyName", diskName);
+            inParams.SetPropertyValue("ResiliencySettingName", resilienceType);
+            inParams.SetPropertyValue("Usage", 2);
             
 
             try
@@ -226,6 +232,49 @@ namespace MainApp
             {
                 return false;
             }
+
+            foreach (ManagementObject item in disk.GetInstances())
+            {
+                var cos = item.GetPropertyValue("FriendlyName");
+                if ((String)item.GetPropertyValue("FriendlyName") == "Microsoft Storage Space Device")
+                {
+                    Disk = item;
+                    inParamsDisk = Disk.GetMethodParameters("CreatePartition");
+                }
+            }
+
+            Thread.Sleep(2000);
+
+            try
+            {
+                ManagementBaseObject outParams = Disk.InvokeMethod("Initialize", null, null);
+            }
+            catch { }
+
+            //UInt32 CreatePartition(
+            //  [in]   UInt64 Size,
+            //  [in]   Boolean UseMaximumSize,
+            //  [in]   UInt64 Offset,
+            //  [in]   UInt32 Alignment,
+            //  [in]   Char16 DriveLetter,
+            //  [in]   Boolean AssignDriveLetter,
+            //  [in]   UInt16 MbrType,
+            //  [in]   String GptType,
+            //  [in]   Boolean IsHidden,
+            //  [in]   Boolean IsActive,
+            //  [out]  String CreatedPartition,
+            //  [out]  String ExtendedStatus
+            //);
+            
+            inParamsDisk.SetPropertyValue("UseMaximumSize", true);
+            inParamsDisk.SetPropertyValue("DriveLetter", driveLetter);
+            
+
+            try
+            {
+                ManagementBaseObject outParams2 = Disk.InvokeMethod("CreatePartition", inParamsDisk, null);
+            }
+            catch { }
 
             return true;
         }
@@ -266,6 +315,38 @@ namespace MainApp
             }
 
             return true;
+        }
+        public bool DeleteLogicalDisk(string diskName)
+        {
+            ManagementClass VirtualDisk = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_VirtualDisk", null);
+
+            ManagementObject Disk = null;
+
+            foreach (ManagementObject disk in VirtualDisk.GetInstances())
+            {
+                if ((String)disk.GetPropertyValue("FriendlyName") == diskName)
+                {
+                    Disk = disk;
+                }
+            }
+            //UInt32 DeleteObject(
+            //  [in]   Boolean RunAsJob,
+            //  [out]  MSFT_StorageJob REF CreatedStorageJob,
+            //  [out]  String ExtendedStatus
+            //);
+            if (Disk != null)
+            {
+                try
+                {
+                    ManagementBaseObject outParam = Disk.InvokeMethod("DeleteObject", null, null);
+                }
+                catch { }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool DeleteStoragePool(string poolName)
@@ -337,6 +418,42 @@ namespace MainApp
             }
 
             return PoolsList;
+        }
+
+        internal List<string> GetListOfLogicalDisks()
+        {
+            ManagementClass virtualDisk = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_VirtualDisk", null);
+
+            List<string> DisksList = new List<string>();
+
+            foreach (ManagementObject disk in virtualDisk.GetInstances())
+            {
+                if ((String)disk.GetPropertyValue("FriendlyName") != "Primordial")
+                {
+                    DisksList.Add((String)disk.GetPropertyValue("FriendlyName"));
+                }
+            }
+
+            return DisksList;
+        }
+
+        internal List<char> GetListOfAvailableLetters()
+        {
+            ManagementClass partition = new ManagementClass("root\\Microsoft\\Windows\\Storage", "MSFT_Partition", null);
+
+            List<char> Letters = new List<char>() { 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
+
+            foreach (ManagementObject item in partition.GetInstances())
+            {
+                char letter = (char)item.GetPropertyValue("DriveLetter");
+                if (Letters.Contains(letter))
+                {
+                    Letters.RemoveAt(Letters.IndexOf((char)item.GetPropertyValue("DriveLetter")));
+                    //Letters.Add((String)item.GetPropertyValue("FriendlyName"));
+                }
+            }
+
+            return Letters;
         }
     }
 }

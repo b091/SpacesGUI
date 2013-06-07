@@ -243,7 +243,7 @@ namespace MainApp
                 }
             }
 
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
 
             try
             {
@@ -275,6 +275,35 @@ namespace MainApp
                 ManagementBaseObject outParams2 = Disk.InvokeMethod("CreatePartition", inParamsDisk, null);
             }
             catch { }
+
+            //ManagementClass volume = new ManagementClass("root\\cimv2", "Win32_Volume", null);
+
+            //ManagementObject Volume = null;
+            //ManagementBaseObject inParamsVol = null;
+
+            //foreach (ManagementObject item in volume.GetInstances())
+            //{
+            //    if ((String)item.GetPropertyValue("DriveLetter") == driveLetter)
+            //    {
+            //        Volume = item;
+            //        inParamsVol = Volume.GetMethodParameters("Format");
+
+            //    }
+            //}
+
+            //inParamsVol.SetPropertyValue("FileSystem", "NTFS");
+            //inParamsVol.SetPropertyValue("QuickFormat", true);
+            //inParamsVol.SetPropertyValue("ClusterSize", 4096);
+            //inParamsVol.SetPropertyValue("Label", diskName);
+
+            //try
+            //{
+            //    ManagementBaseObject outParam = Volume.InvokeMethod("Format", inParamsVol, null);
+            //}
+            //catch
+            //{
+
+            //}
 
             return true;
         }
